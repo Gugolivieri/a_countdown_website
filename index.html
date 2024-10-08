@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown Evento</title>
+
+    <!-- Link a Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+    <!-- CSS migliorato -->
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            background: linear-gradient(to right, #4e54c8, #8f94fb);
+            color: #fff;
+        }
+
+        .container {
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 50px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            font-size: 3em;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        #countdown {
+            font-size: 2.5em;
+            font-weight: 500;
+            letter-spacing: 2px;
+            margin: 20px 0;
+            display: flex;
+            justify-content: space-evenly;
+        }
+
+        .time-box {
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 15px;
+            border-radius: 10px;
+            min-width: 90px;
+        }
+
+        .time-box span {
+            display: block;
+            font-size: 0.8em;
+            margin-top: 5px;
+            font-weight: 300;
+        }
+
+        /* Transizione */
+        #countdown div {
+            transition: all 0.3s ease;
+        }
+
+        /* Immagine */
+        .image-container {
+            margin-top: 30px;
+        }
+
+        .image-container img {
+            width: 100%;
+            max-width: 800px; /* Aumentato a 800px */
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5em;
+            }
+            #countdown {
+                font-size: 2em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2em;
+            }
+            #countdown {
+                font-size: 1.5em;
+            }
+            .image-container img {
+                max-width: 100%; /* L'immagine occupa tutta la larghezza del dispositivo */
+                border-radius: 10px; /* Ridurre un po' il raggio sui dispositivi più piccoli */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>To my arrival in London:</h1>
+        <div id="countdown">
+            <div class="time-box">
+                <span id="days"></span>
+                giorni
+            </div>
+            <div class="time-box">
+                <span id="hours"></span>
+                ore
+            </div>
+            <div class="time-box">
+                <span id="minutes"></span>
+                min
+            </div>
+            <div class="time-box">
+                <span id="seconds"></span>
+                sec
+            </div>
+        </div>
+
+        <!-- Aggiunta dell'immagine -->
+        <div class="image-container">
+            <img src="flight_info.png" alt="Evento in arrivo">
+        </div>
+
+    </div>
+
+    <!-- JavaScript migliorato -->
+    <script>
+        // Imposta la data dell'evento
+        const targetDate = new Date("Oct 10, 2024 21:40:00").getTime();
+
+        // Aggiorna il countdown ogni secondo
+        const countdownInterval = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerHTML = days;
+            document.getElementById("hours").innerHTML = hours;
+            document.getElementById("minutes").innerHTML = minutes;
+            document.getElementById("seconds").innerHTML = seconds;
+
+            // Quando il countdown finisce
+            if (distance < 0) {
+                clearInterval(countdownInterval);
+                document.getElementById("countdown").innerHTML = "Evento Iniziato!";
+            }
+        }, 1000);
+    </script>
+
+</body>
+</html>
