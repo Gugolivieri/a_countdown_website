@@ -26,9 +26,11 @@
         .container {
             text-align: center;
             background-color: rgba(255, 255, 255, 0.1);
-            padding: 50px;
+            padding: 40px;
             border-radius: 15px;
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            width: 90%; /* Flessibile, si adatta alla larghezza del dispositivo */
+            max-width: 800px;
         }
 
         h1 {
@@ -44,6 +46,7 @@
             margin: 20px 0;
             display: flex;
             justify-content: space-evenly;
+            flex-wrap: wrap; /* Adattiamo il layout per i dispositivi più piccoli */
         }
 
         .time-box {
@@ -51,6 +54,7 @@
             padding: 15px;
             border-radius: 10px;
             min-width: 90px;
+            margin: 10px; /* Aggiungiamo spazio tra gli elementi */
         }
 
         .time-box span {
@@ -72,7 +76,7 @@
 
         .image-container img {
             width: 100%;
-            max-width: 800px; /* Aumentato a 800px */
+            max-width: 800px;
             border-radius: 15px;
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
         }
@@ -80,23 +84,31 @@
         /* Responsive Design */
         @media (max-width: 768px) {
             h1 {
-                font-size: 2.5em;
+                font-size: 2.2em; /* Ridurre leggermente per schermi medi */
             }
             #countdown {
                 font-size: 2em;
+            }
+            .time-box {
+                min-width: 70px; /* Riduciamo la larghezza minima delle box */
+                padding: 10px; /* Riduciamo il padding */
             }
         }
 
         @media (max-width: 480px) {
             h1 {
-                font-size: 2em;
+                font-size: 1.8em; /* Ridurre ulteriormente il titolo sui dispositivi piccoli */
             }
             #countdown {
                 font-size: 1.5em;
             }
+            .time-box {
+                min-width: 60px;
+                padding: 8px;
+            }
             .image-container img {
-                max-width: 100%; /* L'immagine occupa tutta la larghezza del dispositivo */
-                border-radius: 10px; /* Ridurre un po' il raggio sui dispositivi più piccoli */
+                max-width: 100%; /* L'immagine occupa tutta la larghezza disponibile */
+                border-radius: 10px; /* Ridurre il raggio degli angoli per schermi piccoli */
             }
         }
     </style>
@@ -154,7 +166,7 @@
             // Quando il countdown finisce
             if (distance < 0) {
                 clearInterval(countdownInterval);
-                document.getElementById("countdown").innerHTML = "Evento Iniziato!";
+                document.getElementById("countdown").innerHTML = "I'm there!";
             }
         }, 1000);
     </script>
